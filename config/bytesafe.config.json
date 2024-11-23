@@ -1,0 +1,9 @@
+{
+    "saveBak": 10,
+    "bakupFolder": "/bakup-sql",
+    "dbUser": {
+        "user": "root",
+        "pw": "root"
+    },
+    "ignore": []
+}
