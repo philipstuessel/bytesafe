@@ -8,7 +8,7 @@ bs_STATUS_FILE="${bs_MAIN_FOLDER}bytesafe.status.json"
 bytesafe() {
     if [[ "$1" == "v" || "$1" == "-v" ]];then
         echo -e "${LIGHT_RED}ByteSafe ${NC}${BRED} SQL ${NC}"
-        echo -e "${BOLD}v0.1.0${NC}"
+        echo -e "${BOLD}v0.1.1${NC}"
         echo -e "${YELLOW}JAP plugin${NC}"
     fi
 
@@ -41,6 +41,11 @@ bytesafe() {
     fi
 
     if [[ "$1" == "list" ]];then
+        bakupFolder=$(jq -r '.bakupFolder' $bs_CONFIG_FILE)
+        BACKUP_BASE_DIR="$HOME/bakup-sql/"
+        if [[ ! $bakupFolder == "/bakup-sql" ]];then
+            BACKUP_BASE_DIR=$bakupFolder
+        fi
         if [[ ! -e $BACKUP_BASE_DIR ]];then
             echo -e "${RED}Error: folder not found${NC} $BACKUP_BASE_DIR" 
             return
